@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────
+   Design tokens. Light is the fallback; .dark is the default
+   (set on <html> in index.html and by useTheme).
+   ───────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --bg: #f3f5f7;
+    --bg-2: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #edf1f4;
+    --ink: #10161c;
+    --ink-2: #3c4954;
+    --muted: #63727f;
+    --line: rgba(16, 32, 48, 0.13);
+    --line-2: rgba(16, 32, 48, 0.07);
+    --sand: #9a6b14;
+    --sand-ink: #ffffff;
+    --sand-soft: rgba(154, 107, 20, 0.1);
+    --azure: #136a8a;
+    --azure-soft: rgba(19, 106, 138, 0.1);
+    --shadow: 0 1px 2px rgba(16, 32, 48, 0.06), 0 12px 32px -18px rgba(16, 32, 48, 0.3);
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg: #0a1120;
+    --bg-2: #0e1729;
+    --surface: #131f35;
+    --surface-2: #192a45;
+    --ink: #e7edf7;
+    --ink-2: #b9c6dc;
+    --muted: #8794ae;
+    --line: rgba(147, 178, 216, 0.18);
+    --line-2: rgba(147, 178, 216, 0.09);
+    --sand: #e2b25c;
+    --sand-ink: #171208;
+    --sand-soft: rgba(226, 178, 92, 0.12);
+    --azure: #6fb6d6;
+    --azure-soft: rgba(111, 182, 214, 0.12);
+    --shadow: 0 1px 2px rgba(2, 6, 23, 0.4), 0 18px 40px -24px rgba(2, 6, 23, 0.85);
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 86px;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans text-fluid antialiased;
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.1;
+    letter-spacing: -0.028em;
+    @apply font-semibold;
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--sand);
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Small, repeated primitives. Layout stays in the JSX.
+   ───────────────────────────────────────────────────────── */
+@layer components {
+  .wrap {
+    @apply w-full max-w-content mx-auto px-5 md:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] border border-line bg-surface
+           px-5 py-3 text-[0.93rem] font-medium text-ink transition
+           hover:-translate-y-px hover:border-sand active:translate-y-0;
+  }
+  .btn-primary {
+    @apply border-sand bg-sand font-semibold text-sand-ink hover:border-sand hover:brightness-95;
+  }
+  .btn-ghost {
+    @apply bg-transparent;
+  }
+  .btn-sm {
+    @apply rounded-[9px] px-4 py-2 text-[0.87rem];
+  }
+
+  .icon-btn {
+    @apply grid h-[38px] w-[38px] place-items-center rounded-[10px] border border-line
+           text-ink-2 transition hover:border-sand hover:bg-sand-soft hover:text-ink;
+  }
+
+  .chip {
+    @apply rounded-[7px] border border-transparent bg-surface-2 px-[11px] py-[5px] text-[0.8rem] text-ink-2;
+  }
+  .chip-key {
+    @apply border-line font-medium text-ink;
+  }
+
+  .bullet {
+    @apply relative pl-5 text-[0.93rem] text-ink-2;
+  }
+  .bullet::before {
+    content: '';
+    @apply absolute left-[2px] top-[0.62em] h-[1.5px] w-[7px] bg-sand opacity-90;
+  }
+
+  .section-pad {
+    @apply border-t border-line-2 py-[76px] md:py-[104px];
+  }
+}
