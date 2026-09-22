@@ -26,7 +26,7 @@ export const profile: Profile = {
   phone: '+91-8919290864',
   linkedin: 'https://www.linkedin.com/in/md-sarfaraz-nasirjah-29354a198',
   github: 'https://github.com/mdsarfaraz191199-tech',
-  resumePath: '/resume/Md_Sarfaraz_Nasirjah_Resume_FullStack.pdf',
+  resumePath: `${import.meta.env.BASE_URL}resume/Md_Sarfaraz_Nasirjah_Resume_FullStack.pdf`,
 };
 
 export const navItems: NavItem[] = [
